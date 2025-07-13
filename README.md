@@ -1,16 +1,16 @@
 # Technical Editor Portfolio – Megan Chauncey
 
-Welcome! This is my portfolio site highlighting my work in technical editing, documentation QA, and content operations. I specialize in validating logic, simplifying workflows, and editing content for clarity and accuracy.
+Welcome! This portfolio highlights my work in technical editing, documentation QA, and content operations. I specialize in validating logic, simplifying workflows, and editing content for clarity and accuracy across marketing and ops systems.
 
 ## 🔍 What’s inside:
-- Clean, mobile-friendly layout
-- Overview of technical editing and QA skills
-- Clear examples of deliverables and expertise
-- Contact link for collaboration or opportunities
+- Clean, mobile-friendly portfolio layout
+- Overview of QA and technical editing skills
+- Examples of deliverables and documented workflows
+- Contact info for freelance, contract, or collaborative projects
 
 ## 🚀 Live Site
-Once GitHub Pages is enabled, this site will be visible at:
-`https://your-username.github.io/technical-editor-portfolio/`
+Visit the portfolio here:  
+https://megchauncey.github.io/Technical-Editor-Portfolio/
 
 ## 📫 Contact
-Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/meganchauncey) or via GitHub Issues.
+Connect with me on [LinkedIn](https://www.linkedin.com/in/meganchauncey) or open a GitHub issue.
