@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Editor Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .header h2 {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .nav-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .portfolio-item p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .view-sample {
+            display: inline-block;
+            background: transparent;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-sample:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close {
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .sample-content {
+            display: none;
+        }
+
+        .sample-content.active {
+            display: block;
+        }
+
+        .sample-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .sample-content strong {
+            color: #333;
+        }
+
+        .sample-content em {
+            color: #888;
+            font-style: italic;
+        }
+
+        .sample-content iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .skill-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header h2 {
+                font-size: 1.2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <h1>Technical Editor Portfolio</h1>
+                <h2>Strategic Documentation & Process Optimization</h2>
+                <p>Transforming complex technical information into clear, actionable documentation that drives business results. Specializing in cloud computing, quality assurance, and technical writing team leadership.</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <div class="nav-buttons">
+                <a href="#portfolio" class="nav-button">Portfolio</a>
+                <a href="#skills" class="nav-button">Core Skills</a>
+                <a href="#contact" class="nav-button">Contact</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="section">
+                <h2>Featured Work</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>Enterprise Cloud Migration Strategy</h3>
+                        <p>Comprehensive whitepaper detailing strategic frameworks for cloud infrastructure transformation. Provides actionable methodologies for C-suite executives and IT leadership navigating complex migration challenges.</p>
+                        <div class="tags">
+                            <span class="tag">Technical Writing</span>
+                            <span class="tag">Cloud Computing</span>
+                            <span class="tag">Executive Content</span>
+                            <span class="tag">Strategic Planning</span>
+                        </div>
+                        <a href="#" onclick="showSample('whitepaper')" class="view-sample">📄 View Sample</a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>Technical Writing Team SOP</h3>
+                        <p>Comprehensive standard operating procedures for technical writing teams supporting cloud computing documentation. Streamlined content development workflows and established quality standards across product lines.</p>
+                        <div class="tags">
+                            <span class="tag">Process Documentation</span>
+                            <span class="tag">Team Management</span>
+                            <span class="tag">Quality Standards</span>
+                            <span class="tag">Workflow Optimization</span>
+                        </div>
+                        <a href="#" onclick="showSample('tech-writer-sop')" class="view-sample">📄 View Sample</a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>QA Lead Review Process</h3>
+                        <p>Detailed standard operating procedures for quality assurance teams reviewing client leads. Established comprehensive qualification frameworks that reduced lead rejection rates by 35% while improving client satisfaction.</p>
+                        <div class="tags">
+                            <span class="tag">Quality Assurance</span>
+                            <span class="tag">Process Design</span>
+                            <span class="tag">Lead Qualification</span>
+                            <span class="tag">Compliance</span>
+                        </div>
+                        <a href="#" onclick="showSample('qa-leads-sop')" class="view-sample">📄 View Sample</a>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>QA Performance Assessment Rubric</h3>
+                        <p>Comprehensive performance evaluation framework for QA analysts across 10 key competency areas. Standardized quality assessment and established clear performance expectations, improving team consistency by 45%.</p>
+                        <div class="tags">
+                            <span class="tag">Performance Management</span>
+                            <span class="tag">Quality Metrics</span>
+                            <span class="tag">Team Development</span>
+                            <span class="tag">Assessment Tools</span>
+                        </div>
+                        <a href="#" onclick="showSample('qa-rubric')" class="view-sample">📄 View Sample</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2>Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>Technical Writing</h4>
+                        <p>Expert-level technical documentation, user guides, API documentation, and complex technical content creation</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Process Documentation</h4>
+                        <p>Standard operating procedures, workflow optimization, quality frameworks, and performance assessment tools</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Cloud Computing</h4>
+                        <p>Enterprise cloud migration strategies, infrastructure documentation, and technical content for cloud platforms</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Quality Assurance</h4>
+                        <p>QA process design, performance rubrics, compliance documentation, and quality control frameworks</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Team Leadership</h4>
+                        <p>Technical writing team management, training development, and cross-functional collaboration</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Content Strategy</h4>
+                        <p>Content planning, editorial workflows, brand consistency, and documentation architecture</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="contact-info">
+                    <h3>Ready to Transform Your Documentation?</h3>
+                    <p>Let's discuss how strategic technical writing can drive your business forward.</p>
+                    <p><strong>Specializing in:</strong> Cloud Computing Documentation, QA Process Optimization, Technical Writing Team Leadership</p>
+                    <p><strong>Available for:</strong> Contract Projects, Consulting, Team Training, and Strategic Documentation Planning</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Modal for displaying samples -->
+        <div id="sampleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Work Sample</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="whitepaper-content" class="sample-content">
+                        <p><strong>Sample:</strong> Enterprise Cloud Migration Whitepaper</p>
+                        <p><em>This is a sanitized version of technical content I created for cloud computing clients. The original contained proprietary information that has been replaced with generic examples while maintaining the structure and writing style.</em></p>
+                        <iframe srcdoc="<!DOCTYPE html><html><head><style>body{font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333;} h1{color: #2c3e50; border-bottom: 2px solid #667eea; padding-bottom: 10px;} h2{color: #667eea; margin-top: 30px;} h3{color: #2c3e50;} .summary{background: #f8f9fa; padding: 20px; border-left: 4px solid #667eea; margin: 20px 0; border-radius: 5px;} ul{margin: 15px 0; padding-left: 20px;} li{margin: 5px 0;}</style></head><body><h1>Optimizing Enterprise Cloud Migration: A Strategic Framework</h1><div class='summary'><h3>Executive Summary</h3><p>Organizations increasingly recognize cloud computing as a critical enabler of digital transformation, yet many struggle with migration complexity and cost optimization. This whitepaper presents a comprehensive framework for enterprises to successfully transition from legacy infrastructure to scalable cloud environments.</p></div><h2>Key Challenges</h2><p><strong>Data Migration Complexity:</strong> Moving large datasets while maintaining data integrity and minimizing downtime requires careful planning and specialized tools.</p><p><strong>Application Dependencies:</strong> Legacy applications often have complex interdependencies that must be mapped and addressed before migration.</p><p><strong>Security and Compliance:</strong> Ensuring regulatory compliance while transitioning security protocols to cloud-native solutions demands comprehensive planning.</p><h2>Strategic Framework</h2><h3>Phase 1: Discovery and Assessment</h3><p>Conduct comprehensive inventory of existing systems, applications, and data flows. Document current performance metrics, security protocols, and compliance requirements.</p><h3>Phase 2: Migration Planning</h3><p>Categorize applications based on migration complexity, business criticality, and potential cloud benefits. Design target-state architecture that optimizes for performance, security, and cost.</p><h3>Phase 3: Implementation</h3><p>Execute migration in carefully planned phases, beginning with non-critical systems and progressively moving to mission-critical applications.</p><h2>Best Practices</h2><ul><li>Implement zero-trust security models with role-based access controls</li><li>Establish clear budget ownership and approval processes</li><li>Provide comprehensive training for IT staff and end-users</li><li>Monitor performance metrics continuously</li></ul></body></html>"></iframe>
+                    </div>
+                    
+                    <div id="tech-writer-sop-content" class="sample-content">
+                        <p><strong>Sample:</strong> Technical Writing Team Standard Operating Procedures</p>
+                        <p><em>This SOP was developed for a technical writing team supporting cloud computing documentation. Confidential client and product information has been generalized.</em></p>
+                        <iframe srcdoc="<!DOCTYPE html><html><head><style>body{font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333;} h1{color: #2c3e50; border-bottom: 2px solid #667eea; padding-bottom: 10px;} h2{color: #667eea; margin-top: 30px;} h3{color: #2c3e50;} .process-step{background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #667eea; border-radius: 5px;} .role-desc{background: #e8f5e8; padding: 10px; margin: 10px 0; border-radius: 5px;} ul{margin: 10px 0; padding-left: 20px;} li{margin: 5px 0;}</style></head><body><h1>Technical Writing Team SOP</h1><h2>Overview</h2><p>This document establishes standardized procedures for the Technical Writing Team to ensure consistent, high-quality documentation across all cloud computing content deliverables.</p><h2>Team Structure</h2><div class='role-desc'><h3>Technical Writing Team Lead</h3><ul><li>Assign projects and manage workload distribution</li><li>Conduct final content reviews before stakeholder approval</li><li>Maintain team SOPs and style guidelines</li><li>Coordinate with product management and engineering teams</li></ul></div><div class='role-desc'><h3>Senior Technical Writers</h3><ul><li>Lead complex documentation projects</li><li>Collaborate directly with subject matter experts</li><li>Mentor junior team members</li><li>Conduct peer reviews for technical accuracy</li></ul></div><h2>Content Development Process</h2><div class='process-step'><h3>Stage 1: Project Initiation</h3><p>All documentation requests submitted through project management system with project description, target audience, deliverables, timeline, and SME contacts.</p></div><div class='process-step'><h3>Stage 2: Research and Discovery</h3><p>Writers conduct background research, SME interviews, and create detailed content outlines with information architecture and key messages.</p></div><div class='process-step'><h3>Stage 3: Content Creation</h3><p>First draft development following style guidelines, self-review process, and peer review for technical accuracy and consistency.</p></div><h2>Quality Standards</h2><ul><li>All technical information verified with SMEs</li><li>Code examples tested and validated</li><li>Content appropriate for target audience skill level</li><li>Consistent voice and tone across all content</li></ul></body></html>"></iframe>
+                    </div>
+                    
+                    <div id="qa-leads-sop-content" class="sample-content">
+                        <p><strong>Sample:</strong> QA Team Lead Review Process</p>
+                        <p><em>This SOP was created for a QA team reviewing leads for cloud computing service clients. Specific client criteria and proprietary processes have been generalized.</em></p>
+                        <iframe srcdoc="<!DOCTYPE html><html><head><style>body{font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333;} h1{color: #2c3e50; border-bottom: 2px solid #667eea; padding-bottom: 10px;} h2{color: #667eea; margin-top: 30px;} h3{color: #2c3e50;} .criteria-box{background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #667eea; border-radius: 5px;} .scoring{background: #e8f5e8; padding: 10px; margin: 10px 0; border-radius: 5px;} ul{margin: 10px 0; padding-left: 20px;} li{margin: 5px 0;}</style></head><body><h1>QA Lead Review Process</h1><h2>Overview</h2><p>This SOP establishes standardized procedures for reviewing and qualifying leads before delivery to clients, ensuring all leads meet specified criteria across six core dimensions.</p><h2>Lead Qualification Framework</h2><div class='criteria-box'><h3>Industry Classification</h3><p>Ensure leads align with client's target industry segments and business focus. Validate primary industry code, secondary industry alignment, and business model compatibility.</p></div><div class='criteria-box'><h3>Territory Verification</h3><p>Confirm leads fall within specified geographic boundaries. Verify headquarters location, regional market alignment, and regulatory compliance by jurisdiction.</p></div><div class='criteria-box'><h3>Company Size Assessment</h3><p>Validate company demographics meet client requirements. Assess annual revenue range, employee count, organizational structure, and growth trajectory.</p></div><div class='criteria-box'><h3>Budget Qualification</h3><p>Assess financial capacity for cloud computing services. Evaluate IT budget allocation, technology spending patterns, and decision-making authority.</p></div><h2>Review Process Workflow</h2><div class='criteria-box'><h3>Stage 1: Initial Screening (3-5 minutes)</h3><p>Data completeness check, format validation, basic compliance review, and duplicate detection.</p></div><div class='criteria-box'><h3>Stage 2: Detailed Qualification (8-12 minutes)</h3><p>Industry analysis, territory verification, company research, and technology fit assessment using multiple data sources.</p></div><div class='criteria-box'><h3>Stage 3: Final Review (5-7 minutes)</h3><p>Quality score calculation, risk assessment, client fit analysis, and delivery preparation.</p></div><h2>Scoring Framework</h2><div class='scoring'><ul><li><strong>Industry Match (25%):</strong> Perfect match: 25 points, Close match: 20 points</li><li><strong>Territory Compliance (20%):</strong> Full compliance: 20 points, Minor concerns: 15 points</li><li><strong>Company Size (20%):</strong> Perfect fit: 20 points, Good fit: 15 points</li><li><strong>Budget Qualification (15%):</strong> Strong indicators: 15 points, Moderate: 10 points</li></ul></div></body></html>"></iframe>
+                    </div>
+                    
+                    <div id="qa-rubric-content" class="sample-content">
+                        <p><strong>Sample:</strong> QA Accuracy Assessment Rubric</p>
+                        <p><em>This performance rubric was designed to evaluate QA analyst performance across multiple competency areas. Specific metrics and client information have been generalized.</em></p>
+                        <iframe srcdoc="<!DOCTYPE html><html><head><style>body{font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333;} h1{color: #2c3e50; border-bottom: 2px solid #667eea; padding-bottom: 10px;} h2{color: #667eea; margin-top: 30px;} h3{color: #2c3e50;} .rubric-level{background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #667eea; border-radius: 5px;} .scoring-info{background: #e8f5e8; padding: 10px; margin: 10px 0; border-radius: 5px;} ul{margin: 10px 0; padding-left: 20px;} li{margin: 5px 0;}</style></head><body><h1>QA Accuracy Assessment Rubric</h1><h2>Overview</h2><p>This rubric provides standardized criteria for evaluating QA analyst performance in lead review and qualification activities, ensuring consistent quality assessment across all team members.</p><div class='scoring-info'><h3>Scoring Scale</h3><ul><li><strong>4 - Exceeds Expectations:</strong> Exceptional accuracy and insight</li><li><strong>3 - Meets Expectations:</strong> Consistent, accurate performance</li><li><strong>2 - Approaching Expectations:</strong> Generally accurate with minor improvements needed</li><li><strong>1 - Below Expectations:</strong> Requires significant improvement</li></ul></div><h2>Core Competency Areas</h2><div class='rubric-level'><h3>Industry Classification Accuracy</h3><p><strong>Exceeds Expectations (4):</strong> 98-100% accuracy rate, identifies primary/secondary industry segments, leverages multiple authoritative sources, provides strategic context about industry trends.</p><p><strong>Meets Expectations (3):</strong> 95-97% accuracy rate, correctly identifies primary industry with supporting evidence, uses standard industry databases.</p></div><div class='rubric-level'><h3>Territory Compliance Verification</h3><p><strong>Exceeds Expectations (4):</strong> 99-100% accuracy, identifies all regulatory considerations, understands complex multi-location scenarios, proactively identifies compliance issues.</p><p><strong>Meets Expectations (3):</strong> 96-98% accuracy, identifies primary regulatory requirements, accurately assesses standard geographic scenarios.</p></div><div class='rubric-level'><h3>Budget Qualification Assessment</h3><p><strong>Exceeds Expectations (4):</strong> 97-100% accuracy, comprehensive financial analysis, identifies future budget trends, assesses financial stability and purchase authority.</p><p><strong>Meets Expectations (3):</strong> 93-96% accuracy, standard financial research using
